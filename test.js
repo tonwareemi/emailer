@@ -1,6 +1,5 @@
 
-
-fetch(, {
+fetch("https://wgtebtfqvnppecpnpkab.nhost.run/v1/functions/email", {
     method: "POST",
     body: JSON.stringify({
       html:`<!doctype html> <html> <body> random html text</body></html>`,
