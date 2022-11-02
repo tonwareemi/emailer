@@ -1,5 +1,9 @@
-var nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer')
+var express = require("express")
 
+  
+export default (req, res) => {
+var name = JSON.stringify(req.body.username)
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -8,21 +12,24 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-export default (req, res) => {
-  
 var mailOptions = {
   from: 'tonwareemizakana@gmail.com',
-  to: 'hillaryzakana862002@gmail.com',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
+  to:JSON.stringify(req.body.email),
+  subject: 'Email test',
+  html: JSON.stringify(req.body.html)
 };
-  
+
+
+
   transporter.sendMail(mailOptions, function(error, info){
   if (error) {
-    console.log(error);
+    res.status(200).send(error)
   } else {
     console.log('Email sent: ' + info.response);
+    res.status(200).send({
+      res:`${info.response}`
+    })
   }
 });
-  res.status(200).send(`Hello ${req}!`)
+  
 }
