@@ -1,4 +1,3 @@
-
 fetch("https://wgtebtfqvnppecpnpkab.nhost.run/v1/functions/email", {
     method: "POST",
     body: JSON.stringify({
