@@ -3,7 +3,7 @@ var express = require("express")
 
   
 export default (req, res) => {
-var request : JSON.stringify(req.body);
+var request=  JSON.stringify(req.body);
 var name = JSON.stringify(req.body.username)
 var transporter = nodemailer.createTransport({
   service: 'gmail',
