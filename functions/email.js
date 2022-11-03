@@ -27,7 +27,7 @@ var mailOptions = {
   } else {
     console.log('Email sent: ' + info.response);
     res.status(200).send({
-      res:`${JSON.stringify(req)}`
+      res:`${JSON.parse(JSON.stringify(req.body))}`
     })
   }
 });
