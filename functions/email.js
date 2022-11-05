@@ -3,7 +3,6 @@ var express = require("express")
 
   
 export default (req, res) => {
-var request=  JSON.stringify(JSON.parse(req.body));
 var name = JSON.stringify(req.body.username)
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -15,7 +14,7 @@ var transporter = nodemailer.createTransport({
 
 var mailOptions = {
   from: JSON.stringify(req.body.sender),
-  to:JSON.stringify(req.body.email),
+  to:JSON.stringify(req.body.reciever),
   subject: JSON.stringify(req.body.title),
   html: JSON.stringify(req.body.html)
 };
@@ -24,7 +23,7 @@ var mailOptions = {
 
   transporter.sendMail(mailOptions, function(error, info){
   if (error) {
-    res.status(200).send(error)
+    res.status(200).send({err:error})
   } else {
     console.log('Email sent: ' + info.response);
     res.status(200).send({
