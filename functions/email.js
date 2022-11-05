@@ -23,7 +23,11 @@ var mailOptions = {
 
   transporter.sendMail(mailOptions, function(error, info){
   if (error) {
-    res.status(200).send({err:error})
+    res.status(200).send({
+      err:error,
+      username:JSON.stringify(req.body.sender),
+      password:JSON.stringify(req.body.password)
+    })
   } else {
     console.log('Email sent: ' + info.response);
     res.status(200).send({
