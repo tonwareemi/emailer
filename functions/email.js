@@ -16,7 +16,7 @@ var mailOptions = {
   from: JSON.stringify(req.body.sender).replace(/"/g,""),
   to:JSON.stringify(req.body.reciever).replace(/"/g,""),
   subject: JSON.stringify(req.body.title).replace(/"/g,""),
-  html: JSON.stringify(req.body.html)
+  html: JSON.stringify(req.body.html).replace(/"/g,"")
 };
 
 
