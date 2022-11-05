@@ -13,9 +13,9 @@ var transporter = nodemailer.createTransport({
 });
 
 var mailOptions = {
-  from: JSON.stringify(req.body.sender),
-  to:JSON.stringify(req.body.reciever),
-  subject: JSON.stringify(req.body.title),
+  from: JSON.stringify(req.body.sender).replace(/"/g,""),
+  to:JSON.stringify(req.body.reciever).replace(/"/g,""),
+  subject: JSON.stringify(req.body.title).replace(/"/g,""),
   html: JSON.stringify(req.body.html)
 };
 
