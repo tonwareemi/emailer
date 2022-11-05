@@ -8,15 +8,15 @@ var name = JSON.stringify(req.body.username)
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'r71523954@gmail.com',
-    pass: 'kfcqorwqmutizbmu'
+    user: JSON.stringify(req.body.sender),
+    pass: JSON.stringify(req.body.password)
   }
 });
 
 var mailOptions = {
-  from: 'r71523954@gmail.com',
+  from: JSON.stringify(req.body.sender),
   to:JSON.stringify(req.body.email),
-  subject: 'Email test',
+  subject: JSON.stringify(req.body.title),
   html: JSON.stringify(req.body.html)
 };
 
