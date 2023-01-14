@@ -3,20 +3,20 @@ var express = require("express")
 
   
 export default (req, res) => {
-var name = JSON.stringify(req.body.username)
+var request = JSON.parse(req)
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: JSON.stringify(req.body.sender).replace(/"/g,""),
-    pass: JSON.stringify(req.body.password).replace(/"/g,"")
+    user: request.sender
+    pass: request.password
   }
 });
 
 var mailOptions = {
-  from: JSON.stringify(req.body.sender).replace(/"/g,""),
-  to:JSON.stringify(req.body.reciever).replace(/"/g,""),
-  subject: JSON.stringify(req.body.title).replace(/"/g,""),
-  html: JSON.stringify(req.body.html).replace(/"/g,"")
+  from: request.sender,
+  to: request.reciever,
+  subject: request.title,
+  html: request.html
 };
 
 
@@ -25,8 +25,8 @@ var mailOptions = {
   if (error) {
     res.status(200).send({
       err:error,
-      username:JSON.stringify(req.body.sender).replace(/"/g,""),
-      password:JSON.stringify(req.body.password).replace(/"/g,"")
+      username: request.sender,
+      password: request.password
     })
   } else {
     console.log('Email sent: ' + info.response);
